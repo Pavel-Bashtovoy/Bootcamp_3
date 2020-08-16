@@ -36,14 +36,21 @@
         <div class="wrapper">
             <span class="menu-toggler">Меню</span>
             <ul class="menu-togglable">
-                <?php foreach ($menu as $item) { ?>
-                    <li class="header-nav-item"><span><a class="header-nav-item__link"
-                                                         href="<?= $item["href"] ?>"><?= $item["link"] ?></a></span>
+            <?php foreach ($menu as $item):?>
+                    <li class="header-nav-item"><span><a class="header-nav-item__link"href="<?= $item["href"] ?>"><?= $item["link"] ?></a></span>
+                    <?php if(!empty($item["submenu"])):?> 
+                        <ul class="sub-menu">
+                        <?php foreach ($item["submenu"] as $sub):?> 
+                            <li class="sub-menu__list-item"><a class="sub-menu__link" href="<?= $sub["submenu_href"] ?>"><?= $sub["submenu_link"] ?></a></li>
+                        <?php endforeach?>   
+                        </ul>
+                    <?php endif ?>                                
                     </li>
-                <?php } ?>
+            <?php endforeach ?>
             </ul>
         </div>
     </nav>
 </header>
 <div class="content">
     <div class="wrapper content__wrapper">
+        <main class="inside-content">
